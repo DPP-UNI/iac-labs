@@ -29,6 +29,9 @@ jobs:
         python-version: "3.10"
     - name: Install Poetry Action
       uses: snok/install-poetry@v1.3.3
+    - name: Setup
+      run: |
+        export PATH=$PATH:$HOME/.local/bin
     - name: Run unit tests
       run: |
         poetry run task test
