@@ -33,7 +33,7 @@ jobs:
       id: cached-poetry-dependencies
       uses: actions/cache@v3
       with:
-        path: /home/runner/work/iac-labs/example-app/.venv
+        path: /home/runner/work/<path>/example-app/.venv
         key: ${{ runner.os }}-venv
   lint:
     needs: build
@@ -42,6 +42,12 @@ jobs:
       run:
         working-directory: ./example-app
     steps:
+    - name: Cache build venv
+      id: cached-poetry-dependencies
+      uses: actions/cache@v3
+      with:
+        path: /home/runner/work/<path>/example-app/.venv
+        key: ${{ runner.os }}-venv
     - name: Run lint
       run: |
         poetry run task lint
@@ -52,6 +58,12 @@ jobs:
       run:
         working-directory: ./example-app
     steps:
+    - name: Cache build venv
+      id: cached-poetry-dependencies
+      uses: actions/cache@v3
+      with:
+        path: /home/runner/work/<path>/example-app/.venv
+        key: ${{ runner.os }}-venv
     - name: Run formatter
       run: |
         poetry run task formatter
@@ -62,6 +74,12 @@ jobs:
       run:
         working-directory: ./example-app
     steps:
+    - name: Cache build venv
+      id: cached-poetry-dependencies
+      uses: actions/cache@v3
+      with:
+        path: /home/runner/work/<path>/example-app/.venv
+        key: ${{ runner.os }}-venv
     - name: Run security tests
       run: |
         poetry run task security
@@ -72,6 +90,12 @@ jobs:
       run:
         working-directory: ./example-app
     steps:
+    - name: Cache build venv
+      id: cached-poetry-dependencies
+      uses: actions/cache@v3
+      with:
+        path: /home/runner/work/<path>/example-app/.venv
+        key: ${{ runner.os }}-venv
     - name: Run unit tests
       run: |
         poetry run task test
