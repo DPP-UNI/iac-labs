@@ -33,11 +33,19 @@ jobs:
     - name: Install Poetry dependencies
       run: |
         poetry install --no-root
-    - name: Cache build venv
-      id: cached-poetry-dependencies
+    - name: Cache linux build venv
+      if: runner.os != 'Windows'
+      id: cached-poetry-dependencies-lionux
       uses: actions/cache@v3
       with:
         path: /home/runner/.cache/pypoetry/virtualenvs
+        key: ${{ runner.os }}-venv
+    - name: Cache Windows build venv
+      if: runner.os != 'Windows'
+      id: cached-poetry-dependencies-windows
+      uses: actions/cache@v3
+      with:
+        path: C:\Users\runneradmin\AppData\Local\pypoetry\Cache\virtualenvs
         key: ${{ runner.os }}-venv
   lint:
     needs: build
