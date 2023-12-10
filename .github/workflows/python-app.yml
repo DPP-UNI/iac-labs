@@ -41,7 +41,7 @@ jobs:
         path: /home/runner/.cache/pypoetry/virtualenvs
         key: ${{ runner.os }}-venv
     - name: Cache Windows build venv
-      if: runner.os != 'Windows'
+      if: runner.os == 'Windows'
       id: cached-poetry-dependencies-windows
       uses: actions/cache@v3
       with:
